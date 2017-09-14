@@ -63,7 +63,6 @@ public class PictureServiceImpl implements PictureService {
 			return PictureResult.error(ExceptionUtil.getStackTrace(e));
 		}
 		//返回结果，生成一个可以访问到图片的url返回
-		return PictureResult.ok(IMAGE_BASE_URL + filePath + "/" + imageName + ext);
+		return PictureResult.ok(IMAGE_BASE_URL + "/"+filePath + "/" + imageName + ext);
 	}
-
 }
