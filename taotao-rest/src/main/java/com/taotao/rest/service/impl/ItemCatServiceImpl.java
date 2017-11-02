@@ -49,6 +49,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 		criteria.andParentIdEqualTo(parentId);
 		List<TbItemCat> list = itemCatMapper.selectByExample(example);
 		List resultList = new ArrayList<>();
+		int count = 0;
 		for (TbItemCat tbItemCat : list) {
 			//判断是否为父节点
 			if(tbItemCat.getIsParent()){
@@ -62,6 +63,12 @@ public class ItemCatServiceImpl implements ItemCatService {
 				catNode.setItem(getCatList(tbItemCat.getId()));
 				
 				resultList.add(catNode);
+				
+				count++;
+				
+				if(parentId==0&&count>=14){
+					break;
+				}
 			}else{
 				resultList.add("/products/"+tbItemCat.getId()+".html|" + tbItemCat.getName());
 			}
